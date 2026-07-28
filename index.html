@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Мафия - Ведущий</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ШАГ 1: Настройка игры -->
+        <div id="setup-screen" class="screen active">
+            <h1>🃏 Мафия</h1>
+            <h2>Настройка игры</h2>
+            
+            <div class="form-group">
+                <label>Количество игроков:</label>
+                <input type="number" id="player-count" value="8" min="4" max="30">
+            </div>
+            
+            <div class="form-group">
+                <label>Имена игроков (через запятую):</label>
+                <textarea id="player-names" rows="3">Игрок 1, Игрок 2, Игрок 3, Игрок 4, Игрок 5, Игрок 6, Игрок 7, Игрок 8</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Настройка ролей:</label>
+                <div id="roles-config"></div>
+            </div>
+            
+            <button id="start-game-btn" class="btn primary">Начать игру</button>
+        </div>
+
+        <!-- ШАГ 2: Раздача ролей -->
+        <div id="roles-screen" class="screen">
+            <h2>Раздача ролей</h2>
+            <div id="roles-list"></div>
+            <div class="role-distribution-controls">
+                <button id="show-roles-one-by-one-btn" class="btn primary">👆 Показывать по одному</button>
+                <button id="show-all-roles-btn" class="btn secondary">📋 Показать все роли</button>
+                <button id="go-to-game-btn" class="btn secondary">Перейти к игре</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 3: Игровой процесс -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <h2 id="phase-title">🌙 Ночь 1</h2>
+                <div class="phase-controls">
+                    <button id="night-btn" class="btn phase-btn active">🌙 Ночь</button>
+                    <button id="day-btn" class="btn phase-btn">☀️ День</button>
+                </div>
+            </div>
+
+            <div class="game-info">
+                <div class="info-row">
+                    <span>👥 Живых: <strong id="alive-count">0</strong></span>
+                    <span>🔪 Мафия: <strong id="mafia-alive">0</strong></span>
+                    <span>🐺 Оборотни: <strong id="werewolf-alive">0</strong></span>
+                </div>
+            </div>
+
+            <div class="actions-panel">
+                <h3>🎯 Действия ведущего</h3>
+                <div id="actions-container"></div>
+            </div>
+
+            <!-- ЖУРНАЛ -->
+            <div class="journal">
+                <h3>📖 Журнал игры</h3>
+                <div id="journal-entries">
+                    <div class="journal-empty">📭 Здесь будут записи ходов</div>
+                </div>
+                <button id="clear-journal-btn" class="btn small danger">🗑️ Очистить журнал</button>
+            </div>
+
+            <button id="reset-game-btn" class="btn danger">🔄 Завершить игру</button>
+        </div>
+
+        <!-- Модальное окно для показа ролей -->
+        <div id="role-modal" class="modal">
+            <div class="modal-content">
+                <div id="role-modal-header">
+                    <span id="role-player-number">1/8</span>
+                    <span id="role-player-name">Игрок</span>
+                </div>
+                <div id="modal-role-display" class="role-display"></div>
+                <div id="role-description" class="role-description"></div>
+                <div class="modal-buttons">
+                    <button id="prev-role-btn" class="btn secondary small">◀ Назад</button>
+                    <button id="next-role-btn" class="btn primary">Дальше ▶</button>
+                </div>
+                <button id="close-modal-btn" class="btn secondary">Закрыть раздачу</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
